@@ -1,0 +1,13 @@
+
+//  ******** ОСНОВНОЕ ОКНО С ВИДЖЕТАМИ ********
+
+.widgets {
+    width: 55%;
+}
+
+//  ******** ЗАКРЕПЛЕННЫЕ ВИДЖЕТЫ ********
+
+.widgets__tag {
+    width: 15%;
+    border-left: 1px solid var(--border-color);
+}

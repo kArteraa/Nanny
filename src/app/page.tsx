@@ -1,5 +1,19 @@
-export default function Home() {
-  return (
-      <h1>fas</h1>
-  );
+import {
+    Header,
+    WidgetContainer,
+    WidgetTagContainer,
+    Chat,
+} from "@/components";
+
+export default function NannyHome() {
+    return (
+        <>
+            <Header />
+            <div className="main__wrapper">
+                <WidgetContainer />
+                <WidgetTagContainer />
+                <Chat />
+            </div>
+        </>
+    );
 }

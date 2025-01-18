@@ -1,6 +1,9 @@
 import type { Metadata } from "next";
 import { ReactNode } from "react";
 import { defaultTheme, ThemeProvider } from "@/components/ThemeProvider";
+import { Preloader } from "@/components";
+import "../styles/index.scss";
+import { boogaloo, montserrat } from "@/app/fonts";
 
 export const metadata: Metadata = {
     title: "Create Next App",
@@ -14,14 +17,20 @@ export default function RootLayout({
 }>) {
     return (
         <html lang="ru" suppressHydrationWarning>
-            <body suppressHydrationWarning>
+            <body
+                className={`${montserrat.variable} ${boogaloo.variable}`}
+                suppressHydrationWarning
+            >
                 <ThemeProvider
                     attribute="class"
                     defaultTheme={defaultTheme}
                     enableSystem
                     disableTransitionOnChange
                 >
-                    <main suppressHydrationWarning>{children}</main>
+                    {/*<Preloader />*/}
+                    <main suppressHydrationWarning className="main">
+                        {children}
+                    </main>
                 </ThemeProvider>
             </body>
         </html>
