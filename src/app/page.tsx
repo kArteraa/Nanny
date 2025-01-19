@@ -11,7 +11,7 @@ export default function NannyHome() {
             <Header />
             <div className="main__wrapper">
                 <WidgetContainer />
-                <WidgetTagContainer />
+               {/* <WidgetTagContainer />*/}
                 <Chat />
             </div>
         </>

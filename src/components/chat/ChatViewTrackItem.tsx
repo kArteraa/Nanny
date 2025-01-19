@@ -3,10 +3,11 @@
 import { FC, HTMLAttributes } from "react";
 import cn from "classnames";
 import { motion } from "framer-motion";
+import {MappingMessagesMessage} from "@/components/chat/ChatViewTrack";
 
 export interface ChatViewTrackItemProps extends HTMLAttributes<HTMLDivElement> {
     type: "nanny" | "user";
-    messages: string[];
+    messages: MappingMessagesMessage[];
 }
 
 export const ChatViewTrackItem: FC<ChatViewTrackItemProps> = ({
@@ -30,15 +31,18 @@ export const ChatViewTrackItem: FC<ChatViewTrackItemProps> = ({
             />
             <div className="chat__view_track__item__messages">
                 {messages.map((message, idx) => (
-                    <motion.p
+                    <motion.div
                         key={idx}
                         initial={{ x: type === "user" ? -10 : 10, opacity: 0 }}
                         animate={{ x: 0, opacity: 1 }}
                         transition={{ duration: 0.5 }}
                         className="chat__view_track__item__message"
                     >
-                        {message}
-                    </motion.p>
+                        <p className="chat__view_track__item__message__text">
+                            {message.message}
+                        </p>
+                            <span className="chat__view_track__item__message__date">{message.date}</span>
+                    </motion.div>
                 ))}
             </div>
         </div>

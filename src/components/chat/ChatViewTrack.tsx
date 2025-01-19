@@ -3,80 +3,33 @@
 import { FC, useEffect, useState } from "react";
 import { ChatViewTrackItem } from "@/components";
 
+export type MappingMessagesMessage = {
+    message: string;
+    date: string;
+}
+
 export type MappingMessages = {
     id: number;
     type: "nanny" | "user";
-    messages: string[];
+    messages: MappingMessagesMessage[];
 };
 
 export const ChatViewTrack: FC = () => {
     const [messages, setMessages] = useState<
-        { type: "user" | "nanny"; message: string }[]
+        { type: "user" | "nanny"; message: string,date: string }[]
     >([
-        { type: "user", message: "Hello, World!" },
+        { type: "user", message: "Hello, World!",date: "18:03" },
         {
             type: "nanny",
             message:
                 "Спасибо за ваше сообщение.ffffffffffffffffffffffffffffffffffffffffffffffffff Чем еще я могу помочь?",
-        },
-        {
-            type: "nanny",
-            message:
-                "Спасибо за ваше сообщение.ffffffffffffffffffffffffffffffffffffffffffffffffff Чем еще я могу помочь?",
-        },
-        {
-            type: "nanny",
-            message:
-                "Спасибо за ваше сообщение.ffffffffffffffffffffffffffffffffffffffffffffffffff Чем еще я могу помочь?",
-        },
-        {
-            type: "nanny",
-            message:
-                "Спасибо за ваше сообщение.ffffffffffffffffffffffffffffffffffffffffffffffffff Чем еще я могу помочь?",
-        },
-        {
-            type: "nanny",
-            message:
-                "Спасибо за ваше сообщение.ffffffffffffffffffffffffffffffffffffffffffffffffff Чем еще я могу помочь?",
-        },
-        {
-            type: "nanny",
-            message:
-                "Спасибо за ваше сообщение.ffffffffffffffffffffffffffffffffffffffffffffffffff Чем еще я могу помочь?",
-        },
-        {
-            type: "nanny",
-            message:
-                "Спасибо за ваше сообщение.ffffffffffffffffffffffffffffffffffffffffffffffffff Чем еще я могу помочь?",
-        },
-        {
-            type: "nanny",
-            message:
-                "Спасибо за ваше сообщение.ffffffffffffffffffffffffffffffffffffffffffffffffff Чем еще я могу помочь?",
-        },
-        {
-            type: "nanny",
-            message:
-                "Спасибо за ваше сообщение.ffffffffffffffffffffffffffffffffffffffffffffffffff Чем еще я могу помочь?",
-        },
-        {
-            type: "nanny",
-            message:
-                "Спасибо за ваше сообщение.ffffffffffffffffffffffffffffffffffffffffffffffffff Чем еще я могу помочь?",
-        },
-        {
-            type: "nanny",
-            message:
-                "Спасибо за ваше сообщение.ffffffffffffffffffffffffffffffffffffffffffffffffff Чем еще я могу помочь?",
+            date: "18:04"
         },
     ]);
     const [mappingMessages, setMappingMessages] = useState<MappingMessages[]>(
         []
     );
 
-    const add = (type: "nanny" | "user") => {
-        setMessages([...messages, { type: type, message: "Сообщение" }]);
-    };
 
     useEffect(() => {
         if (messages && messages.length > 0) {
@@ -93,7 +46,10 @@ export const ChatViewTrack: FC = () => {
                     const message: string = messages[i].message;
                     currentMessages.messages = [
                         ...currentMessages.messages,
-                        message,
+                        {
+                            message: message,
+                            date: messages[i].date
+                        },
                     ];
                 } else {
                     const message: string = messages[i].message;
@@ -102,7 +58,7 @@ export const ChatViewTrack: FC = () => {
                     currentMessages = {
                         id: result.length,
                         type: currentType,
-                        messages: [message],
+                        messages: [{message: message, date: messages[i].date}],
                     };
                 }
             }
