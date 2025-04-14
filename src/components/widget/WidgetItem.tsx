@@ -1,28 +1,43 @@
-import {FC} from "react";
+"use client";
+
+import { FC } from "react";
 import { IoMdClose } from "react-icons/io";
 import { TiPinOutline } from "react-icons/ti";
-import { GoGrabber } from "react-icons/go";
 
-interface WidgetItemProps {
-}
+import FullCalendar from "@fullcalendar/react";
+import dayGridPlugin from "@fullcalendar/daygrid";
+import interactionPlugin from "@fullcalendar/interaction";
 
-export const WidgetItem: FC<WidgetItemProps> = () => {
+import { motion } from "framer-motion";
+
+
+export const WidgetItem: FC = () => {
+    const events = [
+        { title: "Заметка номер 1", date: "2025-03-24" },
+        { title: "Заметка номер 2", date: "2025-03-24" },
+        { title: "Заметка номер 1", date: "2025-03-25" },
+    ];
+
     return (
-        <div className="widget">
-            <div className="widget__grab">
-                <GoGrabber className="widget__grab__icon" />
-            </div>
+        <motion.div className="widget">
             <div className="widget__main">
                 <div className="widget__header">
-                    <h1 className="widget__title">Новый виджет</h1>
+                    <h1 className="widget__title">Календарь</h1>
                     <div className="widget__tools">
-                        <TiPinOutline/>
-                        <IoMdClose/>
+                        <TiPinOutline />
+                        <IoMdClose />
                     </div>
                 </div>
+                <div className="widget__content">
+                    <FullCalendar
+                        plugins={[dayGridPlugin, interactionPlugin]}
+                        initialView="dayGridMonth"
+                        height="600px"
+                        contentHeight="auto"
+                        events={events}
+                    />
+                </div>
             </div>
-
-        </div>
+        </motion.div>
     );
 };
-

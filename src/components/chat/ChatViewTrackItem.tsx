@@ -3,7 +3,7 @@
 import { FC, HTMLAttributes } from "react";
 import cn from "classnames";
 import { motion } from "framer-motion";
-import {MappingMessagesMessage} from "@/components/chat/ChatViewTrack";
+import { MappingMessagesMessage } from "@/types/messages.types";
 
 export interface ChatViewTrackItemProps extends HTMLAttributes<HTMLDivElement> {
     type: "nanny" | "user";
@@ -24,8 +24,8 @@ export const ChatViewTrackItem: FC<ChatViewTrackItemProps> = ({
             {...props}
         >
             <motion.div
-                initial={{ x: type === "user" ? 10 : -10, opacity: 0 }}
-                animate={{ x: 0, opacity: 1 }}
+                initial={{ y: 5, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
                 transition={{ duration: 0.5 }}
                 className="chat__view_track__item__avatar"
             />
@@ -33,15 +33,17 @@ export const ChatViewTrackItem: FC<ChatViewTrackItemProps> = ({
                 {messages.map((message, idx) => (
                     <motion.div
                         key={idx}
-                        initial={{ x: type === "user" ? -10 : 10, opacity: 0 }}
-                        animate={{ x: 0, opacity: 1 }}
+                        initial={{ y: 5, opacity: 0 }}
+                        animate={{ y: 0, opacity: 1 }}
                         transition={{ duration: 0.5 }}
                         className="chat__view_track__item__message"
                     >
                         <p className="chat__view_track__item__message__text">
                             {message.message}
                         </p>
-                            <span className="chat__view_track__item__message__date">{message.date}</span>
+                        <span className="chat__view_track__item__message__date">
+                            {message.date}
+                        </span>
                     </motion.div>
                 ))}
             </div>

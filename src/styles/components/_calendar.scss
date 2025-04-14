@@ -1,0 +1,31 @@
+.fc {
+    font-size: 14px; /* Изменяем шрифт */
+}
+.fc-daygrid-day-number {
+    font-size: 12px; /* Уменьшаем размер числа дня */
+}
+
+.fc-header-toolbar {
+    font-size: 12px; /* Уменьшаем размер шрифта заголовка */
+}
+
+/* Уменьшаем размер самого календаря */
+.fc {
+    width: 100%; /* Уменьшаем ширину */
+    margin: 0 auto; /* Центрируем календарь */
+}
+
+
+.fc-theme-standard td, .fc-theme-standard th , .fc-theme-standard , .fc-scrollgrid {
+    border-color: #222 !important;
+}
+
+.fc-daygrid-day.fc-day-today {
+    background-color: rgba(48,17,81,1 ) !important;
+}
+
+.fc-h-event {
+    background-color:  #222 !important;
+    border-color:  #222 !important;
+    padding: 5px;
+}

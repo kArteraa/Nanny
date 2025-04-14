@@ -1,18 +1,17 @@
 .chat {
-    width: 30%;
+    width: 25%;
     background-color: var(--chat-background-color);
 
     display: flex;
     flex-direction: column;
 
     border-left: 1px solid var(--border-color);
-
-
 }
 
 .chat__view_track {
     height: 70%;
     overflow-y: scroll;
+    scroll-behavior: smooth;
 
 }
 
@@ -111,7 +110,7 @@
 .chat__view_track__item__messages {
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
+    align-items: flex-end;
     gap: 5px;
 }
 
@@ -165,36 +164,25 @@
 }
 
 .chat__toolbar__item {
+    user-select: none;
     position: relative;
     cursor: pointer;
     text-align: center;
+    border-radius: 8px;
     padding: 10px;
 
     transition: .2s linear;
 
     &:hover, &.active {
         background-color: var(--primary-color);
-        border-radius: 8px;
+
         color: var(--secondary-color);
     }
 
-    &.active {
-        &::after {
-            content: "";
-            display: block;
-            width: 25px;
-            height: 7px;
-
-            position: absolute;
-            top: 97%;
-            left: 50%;
-            z-index: 1;
-            transform: translateX(-50%);
-
-            clip-path: polygon(100% 0, 0 0, 50% 100%);
-            background-color: var(--primary-color);
-        }
+    &:not(&.active):active {
+        background-color: var(--primary-color-25);
     }
+
 }
 
 .chat__toolbar__item__title {

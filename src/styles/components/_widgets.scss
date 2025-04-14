@@ -2,45 +2,36 @@
 //  ******** ОСНОВНОЕ ОКНО С ВИДЖЕТАМИ ********
 
 .widgets {
-    width: 70%;
-    padding: 10px;
+    width: 75%;
+    padding: 20px;
+    overflow: hidden;
+}
+
+.widgets__wrapper {
+    display: flex;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 18px;
+
+
 }
 
 .widget {
     display: flex;
-    background-color: rgba(#092F7E,.4);
-    width: 400px;
-    height: 100px;
+    width: 100%;
+    height: auto;
 
     border-radius: 16px;
+    backdrop-filter: blur(25px);
+
+    border:1px solid #515151;
 
 }
 
-.widget__grab {
-    cursor: grab;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding-left: 10px;
-
-    &::after {
-        content: "";
-        display: block;
-        width: 1px;
-        height: 100%;
-        background-color: #ccc;
-        margin: 0 10px;
-    }
-}
-
-.widget__grab__icon {
-    font-size: 20px;
-}
 
 .widget__main {
     flex:1;
-    padding: 10px 20px 10px 10px;
+    padding: 20px 40px;
 
 }
 
@@ -61,11 +52,16 @@
     font-weight: 600;
 }
 
+.widget__content {
+    margin-top: 20px;
+}
+
 //  ******** ЗАКРЕПЛЕННЫЕ ВИДЖЕТЫ ********
 
 .widgets__tag {
     width: 15%;
     border-left: 1px solid var(--border-color);
 }
+
 
 

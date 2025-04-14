@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { ReactNode } from "react";
 import { defaultTheme, ThemeProvider } from "@/components/ThemeProvider";
-import { Preloader } from "@/components";
 import "../styles/index.scss";
 import { boogaloo, montserrat } from "@/app/fonts";
 
@@ -31,6 +30,7 @@ export default function RootLayout({
                     <main suppressHydrationWarning className="main">
                         {children}
                     </main>
+                    <script src="three.r119.min.js"></script>
                 </ThemeProvider>
             </body>
         </html>

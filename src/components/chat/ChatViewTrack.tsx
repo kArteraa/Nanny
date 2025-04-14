@@ -1,75 +1,68 @@
 "use client";
 
-import { FC, useEffect, useState } from "react";
+import { FC, useEffect, useRef, useState } from "react";
 import { ChatViewTrackItem } from "@/components";
-
-export type MappingMessagesMessage = {
-    message: string;
-    date: string;
-}
-
-export type MappingMessages = {
-    id: number;
-    type: "nanny" | "user";
-    messages: MappingMessagesMessage[];
-};
+import { MappingMessages, ResponseMessage } from "@/types/messages.types";
+import { useInputStore, useToolbarStore } from "@/store";
 
 export const ChatViewTrack: FC = () => {
-    const [messages, setMessages] = useState<
-        { type: "user" | "nanny"; message: string,date: string }[]
-    >([
-        { type: "user", message: "Hello, World!",date: "18:03" },
+    const { text, submit, setSubmit, setText, mappingMessagesHandler } =
+        useInputStore();
+    const { tool } = useToolbarStore();
+    const chatTrack = useRef<HTMLDivElement>(null);
+
+    const [messages, setMessages] = useState<ResponseMessage[]>([
         {
             type: "nanny",
             message:
-                "Спасибо за ваше сообщение.ffffffffffffffffffffffffffffffffffffffffffffffffff Чем еще я могу помочь?",
-            date: "18:04"
+                "Nanny AI Service - Интерактивный помощник по поддержке принятия решений личностного роста.\n\n Напишите свое сообщение для начала работы.",
+            date: "18:03",
         },
     ]);
     const [mappingMessages, setMappingMessages] = useState<MappingMessages[]>(
         []
     );
 
-
     useEffect(() => {
         if (messages && messages.length > 0) {
-            let currentType = messages[0].type;
-            let result: MappingMessages[] = [];
-            let currentMessages: MappingMessages = {
-                id: 0,
-                type: currentType,
-                messages: [],
-            };
-            for (let i = 0; i < messages.length; ++i) {
-                const messageType = messages[i].type;
-                if (messageType === currentType) {
-                    const message: string = messages[i].message;
-                    currentMessages.messages = [
-                        ...currentMessages.messages,
-                        {
-                            message: message,
-                            date: messages[i].date
-                        },
-                    ];
-                } else {
-                    const message: string = messages[i].message;
-                    result = [...result, currentMessages];
-                    currentType = messageType;
-                    currentMessages = {
-                        id: result.length,
-                        type: currentType,
-                        messages: [{message: message, date: messages[i].date}],
-                    };
-                }
-            }
-            result = [...result, currentMessages];
-
-            setMappingMessages(result);
+            setMappingMessages(mappingMessagesHandler(messages));
         }
     }, [messages]);
 
+    useEffect(() => {
+        if (submit) {
+            if (text) {
+                const currentText = text;
+                setText("");
+
+                setMessages((prev) => [
+                    ...prev,
+                    { type: "user", message: currentText, date: "19:03" },
+                ]);
+                setTimeout(() => {
+                    setMessages((prev) => [
+                        ...prev,
+                        {
+                            type: "nanny",
+                            message: `Постобработка сообщения "${currentText}". Добавление виджета - ${tool}!`,
+                            date: "19:03",
+                        },
+                    ]);
+                }, 500);
+            }
+        }
+
+        setSubmit(false);
+    }, [submit]);
+
+    useEffect(() => {
+        if (chatTrack.current) {
+            chatTrack.current.scrollTop = chatTrack.current.scrollHeight;
+        }
+    }, [mappingMessages]);
+
     return (
-        <div className="chat__view_track">
+        <div className="chat__view_track" ref={chatTrack}>
             <div className="chat__view_track__wrapper">
                 {mappingMessages.map((message, idx) => (
                     <ChatViewTrackItem

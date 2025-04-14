@@ -1,22 +1,37 @@
+"use client";
+
 import { FC } from "react";
+import { Tools } from "@/types/tools.types";
+import cn from "classnames";
+import { useToolbarStore } from "@/store";
 
 interface ChatToolbarProps {}
 
+const tools: Tools = [
+    { id: "calendar", label: "Календарь" },
+    { id: "task", label: "Задача" },
+    { id: "note", label: "Заметка" },
+];
+
 export const ChatToolbar: FC<ChatToolbarProps> = ({}) => {
+    const { tool, setTool } = useToolbarStore();
+
     return (
         <section className="chat__toolbar">
-            <div className="chat__toolbar__item active">
-                <h1 className="chat__toolbar__item__title">Календарь</h1>
-            </div>
-            <div className="chat__toolbar__item">
-                <h1 className="chat__toolbar__item__title">Задача</h1>
-            </div>
-            <div className="chat__toolbar__item">
-                <h1 className="chat__toolbar__item__title">Заметка</h1>
-            </div>
-            <div className="chat__toolbar__item">
-                <h1 className="chat__toolbar__item__title">Цель</h1>
-            </div>
+            {tools.map((toolItem) => (
+                <div
+                    key={toolItem.id}
+                    className={cn(
+                        "chat__toolbar__item",
+                        tool === toolItem.id && "active"
+                    )}
+                    onClick={() => setTool(toolItem.id)}
+                >
+                    <h1 className="chat__toolbar__item__title">
+                        {toolItem.label}
+                    </h1>
+                </div>
+            ))}
         </section>
     );
 };
