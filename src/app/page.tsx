@@ -1,19 +1,8 @@
-import {
-    Header,
-    WidgetContainer,
-    WidgetTagContainer,
-    Chat,
-} from "@/components";
+import { FC } from "react";
+import { redirect } from "next/navigation";
 
-export default function NannyHome() {
-    return (
-        <>
-            <Header />
-            <div className="main__wrapper">
-                <WidgetContainer />
-               {/* <WidgetTagContainer />*/}
-                <Chat />
-            </div>
-        </>
-    );
-}
+const MainPage: FC = ({}) => {
+    redirect("/login");
+};
+
+export default MainPage;

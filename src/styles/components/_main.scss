@@ -71,3 +71,12 @@ html, body {
         height: calc(100vh - var(--header-height));
     }
 }
+
+.auth_page {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+    justify-content: center;
+}
