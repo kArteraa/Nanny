@@ -1,15 +1,18 @@
 "use client";
 
 import { FC, useEffect, useRef } from "react";
-import { WidgetItem } from "@/components";
+import { WidgetItem, WidgetToolbar } from "@/components";
 import * as THREE from "three";
 import FOG from "vanta/dist/vanta.fog.min";
+import { useWidgetsToolbarStore } from "@/store/widgets/widgetsToolbarStore";
+import cn from "classnames";
 
 interface WidgetContainerProps {}
 
 export const WidgetContainer: FC<WidgetContainerProps> = ({}) => {
     const vantaRef = useRef<HTMLDivElement | null>(null);
     const vantaEffect = useRef<any>(null); // Тип для эффекта (временный)
+    const { tool } = useWidgetsToolbarStore();
 
     useEffect(() => {
         if (vantaRef.current && !vantaEffect.current) {
@@ -38,8 +41,22 @@ export const WidgetContainer: FC<WidgetContainerProps> = ({}) => {
     }, []);
 
     return (
-        <section className="widgets" ref={vantaRef} style={{}}>
-            <div className="widgets__wrapper">
+        <section
+            className="widgets"
+            ref={vantaRef}
+            style={{}}
+            data-testid={"widgets"}
+        >
+            <WidgetToolbar />
+            <div
+                className={cn(
+                    "widgets__wrapper",
+                    tool === "rows" && "rows_tmp"
+                )}
+            >
+                <WidgetItem />
+                <WidgetItem />
+                <WidgetItem />
                 <WidgetItem />
             </div>
         </section>

@@ -1,17 +1,12 @@
-import {
-    Header,
-    WidgetContainer,
-    WidgetTagContainer,
-    Chat,
-} from "@/components";
+import { Header, WidgetContainer, Chat, WidgetToolbar } from "@/components";
 
 export default function NannyHome() {
     return (
         <>
             <Header />
-            <div className="main__wrapper">
+            <div className="main__wrapper" data-testid="main__wrapper">
                 <WidgetContainer />
-               {/* <WidgetTagContainer />*/}
+                {/*<WidgetTagContainer /> */}
                 <Chat />
             </div>
         </>

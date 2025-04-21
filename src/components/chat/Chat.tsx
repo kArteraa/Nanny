@@ -6,7 +6,7 @@ interface ChatProps {}
 
 export const Chat: FC<ChatProps> = ({}) => {
     return (
-        <section className="chat">
+        <section className="chat" data-testid={"chat"}>
             <ChatViewTrack />
             <ChatTools />
         </section>

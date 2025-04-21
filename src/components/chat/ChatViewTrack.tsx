@@ -64,13 +64,13 @@ export const ChatViewTrack: FC = () => {
     return (
         <div className="chat__view_track" ref={chatTrack}>
             <div className="chat__view_track__wrapper">
-                {/*{mappingMessages.map((message, idx) => (*/}
-                {/*    <ChatViewTrackItem*/}
-                {/*        key={idx}*/}
-                {/*        messages={message.messages}*/}
-                {/*        type={message.type}*/}
-                {/*    />*/}
-                {/*))}*/}
+                {mappingMessages.map((message, idx) => (
+                    <ChatViewTrackItem
+                        key={idx}
+                        messages={message.messages}
+                        type={message.type}
+                    />
+                ))}
             </div>
         </div>
     );

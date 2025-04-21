@@ -27,6 +27,8 @@
     "zustand": "^5.0.3"
   },
   "devDependencies": {
+    "@babel/core": "^7.26.10",
+    "@babel/preset-env": "^7.26.9",
     "@eslint/eslintrc": "^3",
     "@testing-library/jest-dom": "^6.6.3",
     "@testing-library/react": "^16.3.0",
@@ -36,6 +38,7 @@
     "@types/react-dom": "^19",
     "@types/rellax": "^1.7.7",
     "@types/three": "^0.174.0",
+    "babel-jest": "^29.7.0",
     "eslint": "^9",
     "eslint-config-next": "15.1.5",
     "i": "^0.3.7",

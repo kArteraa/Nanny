@@ -10,6 +10,10 @@ const createJestConfig = nextJest({
 const config: Config = {
     coverageProvider: "v8",
     testEnvironment: "jsdom",
+    transformIgnorePatterns: ["node_modules/(?!(preact|@testing-library)/)"],
+    transform: {
+        "^.+\\.jsx?$": "babel-jest",
+    },
     // Add more setup options before each test is run
     // setupFilesAfterEnv: ['<rootDir>/jest.setup.ts'],
 };

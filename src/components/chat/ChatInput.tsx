@@ -28,6 +28,7 @@ export const ChatInput: FC<ChatInputProps> = ({}) => {
                 className="chat__input"
                 placeholder="Напишите сообщение..."
                 value={text}
+                data-testid={"message-input"}
                 onChange={(e) => setText(e.target.value)}
             />
             {/*<HiOutlineFaceSmile className="chat__emoji" />*/}

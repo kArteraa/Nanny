@@ -3,17 +3,23 @@
 
 .widgets {
     width: 75%;
-    padding: 20px;
     overflow: hidden;
+    display: flex;
 }
 
 .widgets__wrapper {
-    display: flex;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
     align-items: flex-start;
     flex-wrap: wrap;
     gap: 18px;
+    padding: 20px 20px 20px 20px;
 
+    overflow-y: auto;
 
+    &.rows_tmp {
+        grid-template-columns: 1fr;
+    }
 }
 
 .widget {
@@ -54,6 +60,50 @@
 
 .widget__content {
     margin-top: 20px;
+}
+
+.widgets__toolbar {
+    position: relative;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    align-self: center;
+    margin-left: 10px;
+
+    backdrop-filter: blur(25px);
+    padding: 10px;
+    border-radius: 10px;
+    margin-right: 10px;
+
+    & svg {
+        max-width: 100px;
+    }
+}
+
+.widgets__toolbar__separator {
+    margin: 10px 0;
+}
+
+.widgets__toolbar__icon {
+    cursor: pointer;
+    font-size: 25px;
+
+    transition: .2s linear;
+
+    &.active {
+        cursor: default;
+        color: var(--purple);
+    }
+
+    &:hover {
+        color: var(--purple);
+    }
+
+    &:not(&.active):active {
+        color: var(--primary-color);
+    }
 }
 
 //  ******** ЗАКРЕПЛЕННЫЕ ВИДЖЕТЫ ********

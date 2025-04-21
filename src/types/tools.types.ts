@@ -4,3 +4,5 @@ export type Tools = {
     id: ToolType;
     label: string;
 }[];
+
+export type WidgetsTools = "calendar" | "rows" | "grid";

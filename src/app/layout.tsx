@@ -1,8 +1,8 @@
-import type { Metadata } from "next";
 import { ReactNode } from "react";
 import { defaultTheme, ThemeProvider } from "@/components/ThemeProvider";
 import "../styles/index.scss";
 import { boogaloo, montserrat } from "@/app/fonts";
+import type { Metadata } from "next";
 
 export const metadata: Metadata = {
     title: "Create Next App",
