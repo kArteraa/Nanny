@@ -1,11 +1,11 @@
 "use client";
 
 import { FC, useEffect, useRef } from "react";
-import { WidgetItem, WidgetToolbar } from "@/components";
-import * as THREE from "three";
-import FOG from "vanta/dist/vanta.fog.min";
+import { WidgetsWrapper, WidgetToolbar } from "@/components";
+
 import { useWidgetsToolbarStore } from "@/store/widgets/widgetsToolbarStore";
-import cn from "classnames";
+
+import { vantaConfig } from "@/vanta/vanta.config";
 
 interface WidgetContainerProps {}
 
@@ -16,20 +16,7 @@ export const WidgetContainer: FC<WidgetContainerProps> = ({}) => {
 
     useEffect(() => {
         if (vantaRef.current && !vantaEffect.current) {
-            vantaEffect.current = FOG({
-                el: vantaRef.current,
-                THREE,
-                mouseControls: true,
-                touchControls: true,
-                gyroControls: false,
-                highlightColor: "rgb(48,49,65)",
-                midtoneColor: "rgb(48,49,65)",
-                lowlightColor: "#adadbd",
-                baseColor: "rgb(48,49,65)",
-                blurFactor: 0.3,
-                speed: 0.5,
-                zoom: 1,
-            });
+            vantaEffect.current = vantaConfig(vantaRef.current);
         }
 
         return () => {
@@ -41,24 +28,15 @@ export const WidgetContainer: FC<WidgetContainerProps> = ({}) => {
     }, []);
 
     return (
-        <section
-            className="widgets"
-            ref={vantaRef}
-            style={{}}
-            data-testid={"widgets"}
-        >
+        <section className="widgets" ref={vantaRef} data-testid={"widgets"}>
             <WidgetToolbar />
-            <div
-                className={cn(
-                    "widgets__wrapper",
-                    tool === "rows" && "rows_tmp"
-                )}
-            >
-                <WidgetItem />
-                <WidgetItem />
-                <WidgetItem />
-                <WidgetItem />
-            </div>
+            {
+                {
+                    grid: <WidgetsWrapper gridType="grid" />,
+                    rows: <WidgetsWrapper gridType="rows" />,
+                    calendar: <WidgetsWrapper gridType="grid" />,
+                }[tool]
+            }
         </section>
     );
 };

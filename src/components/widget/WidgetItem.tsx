@@ -17,7 +17,7 @@ export const WidgetItem: FC = () => {
                 <div className="widget__header">
                     <h1 className="widget__title">Календарь</h1>
                     <div className="widget__tools">
-                        <TiPinOutline />
+                        {/*<TiPinOutline />*/}
                         <IoMdClose />
                     </div>
                 </div>

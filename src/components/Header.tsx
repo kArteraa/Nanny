@@ -8,7 +8,7 @@ export const Header: FC<HeaderProps> = ({}) => {
         <header className="header" data-testid={"header"}>
             <div className="header__wrapper">
                 <h1 className="header__title">Nanny - ai service</h1>
-                <GiHamburgerMenu className="header__burger" />
+                {/*<GiHamburgerMenu className="header__burger" />*/}
             </div>
         </header>
     );

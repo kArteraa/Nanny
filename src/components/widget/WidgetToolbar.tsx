@@ -12,7 +12,13 @@ export const WidgetToolbar: FC = () => {
 
     return (
         <div className="widgets__toolbar">
-            <CiCalendar className="widgets__toolbar__icon" />
+            <CiCalendar
+                className={cn(
+                    "widgets__toolbar__icon",
+                    tool === "calendar" && "active"
+                )}
+                onClick={() => setTool("calendar")}
+            />
             <hr className="widgets__toolbar__separator" />
             <CiGrid41
                 className={cn(

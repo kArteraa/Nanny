@@ -1,22 +1,18 @@
 import { FC } from "react";
 import Link from "next/link";
+import { MdEmail } from "react-icons/md";
+import { FaKey } from "react-icons/fa";
 
 const RegisterPage: FC = ({}) => {
     return (
         <div className="auth_page" data-testid="auth-page">
             <div className="form" role="form">
                 <h1 className="form__title" data-testid="form-title">
-                    Регистрация
+                    Создать аккаунт
                 </h1>
 
                 <div className="form__input_block" data-testid="input-block">
-                    <label
-                        htmlFor="login"
-                        className="form__input_block__title"
-                        data-testid="email-label"
-                    >
-                        Email
-                    </label>
+                    <MdEmail className="form__input_block__icon" />
                     <input
                         type="text"
                         name="login"
@@ -28,13 +24,7 @@ const RegisterPage: FC = ({}) => {
                 </div>
 
                 <div className="form__input_block" data-testid="input-block">
-                    <label
-                        htmlFor="pswd"
-                        className="form__input_block__title"
-                        data-testid="password-label"
-                    >
-                        Пароль
-                    </label>
+                    <FaKey className="form__input_block__icon" />
                     <input
                         type="password"
                         name="pswd"
@@ -46,13 +36,7 @@ const RegisterPage: FC = ({}) => {
                 </div>
 
                 <div className="form__input_block" data-testid="input-block">
-                    <label
-                        htmlFor="pswdagain"
-                        className="form__input_block__title"
-                        data-testid="confirm-password-label"
-                    >
-                        Повторите пароль
-                    </label>
+                    <FaKey className="form__input_block__icon" />
                     <input
                         type="password"
                         name="pswdagain"
@@ -68,15 +52,19 @@ const RegisterPage: FC = ({}) => {
                     href="/login"
                     data-testid="register-button"
                 >
-                    Зарегистрироваться
+                    Создать
                 </Link>
-
+            </div>
+            <div className="form__redirect__block">
+                <p className="form__redirect__block__text">
+                    Аккаунт уже существует?
+                </p>
                 <Link
                     href="/login"
-                    className="form__button__link register_link"
-                    data-testid="back-link"
+                    className="form__button__link"
+                    data-testid="register-link"
                 >
-                    Вернуться
+                    Войти
                 </Link>
             </div>
         </div>

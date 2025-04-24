@@ -1,19 +1,18 @@
 import { FC } from "react";
 import Link from "next/link";
+import { MdEmail } from "react-icons/md";
+import { FaKey } from "react-icons/fa";
 
 const LoginPage: FC = ({}) => {
     return (
         <div className="auth_page" data-testid="auth-page">
             <div className="form" role="form">
-                <h1 className="form__title">Авторизация</h1>
+                <h1 className="form__title">Войти в аккаунт</h1>
 
                 <div className="form__input_block" data-testid="input-block">
-                    <label htmlFor="login" className="form__input_block__title">
-                        Email
-                    </label>
+                    <MdEmail className="form__input_block__icon" />
                     <input
                         type="text"
-                        name="login"
                         id="login"
                         placeholder="Email"
                         className="form__input"
@@ -22,12 +21,9 @@ const LoginPage: FC = ({}) => {
                 </div>
 
                 <div className="form__input_block" data-testid="input-block">
-                    <label htmlFor="pswd" className="form__input_block__title">
-                        Пароль
-                    </label>
+                    <FaKey className="form__input_block__icon" />
                     <input
                         type="password"
-                        name="pswd"
                         id="pswd"
                         placeholder="Пароль"
                         className="form__input"
@@ -42,13 +38,17 @@ const LoginPage: FC = ({}) => {
                 >
                     Войти
                 </Link>
-
+            </div>
+            <div className="form__redirect__block">
+                <p className="form__redirect__block__text">
+                    До сих пор нет аккаунта?
+                </p>
                 <Link
                     href="/register"
                     className="form__button__link"
                     data-testid="register-link"
                 >
-                    Зарегистрироваться
+                    Создайте
                 </Link>
             </div>
         </div>
