@@ -29,3 +29,148 @@
     border-color:  #222 !important;
     padding: 5px;
 }
+
+.calendar {
+    position: relative;
+
+    backdrop-filter: blur(30px);
+    width: 100%;
+}
+
+.calendar__main {
+    display: flex;
+    height: 100%;
+}
+
+.calendar__sidebar {
+    width: 300px;
+    border-right: 1px solid var(--border-color);
+    padding: 10px 20px;
+}
+
+.calendar__sidebar__title_block {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 30px;
+    margin-bottom: 24px;
+}
+
+.calendar__sidebar__title_block__actions {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.calendar__sidebar__title_block__actions__action {
+    cursor: pointer;
+    font-size: 20px;
+
+    transition: .2s linear;
+
+    &:hover {
+        color: var(--purple);
+    }
+
+    &:active {
+        color: var(--primary-color);
+    }
+}
+
+.calendar__sidebar__title {
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.calendar__sidebar__list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.calendar__sidebar__list__item {
+    font-size: 13px;
+}
+
+.calendar__wrapper {
+    width: calc(100% - 300px);
+    flex-shrink: 0;
+    padding: 10px 20px;
+}
+
+.calendar__settings {
+    padding: 10px;
+}
+
+.calendar__settings__head {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    padding-bottom: 10px;
+
+    border-bottom: 1px solid var(--gray);
+}
+
+.calendar__settings__body {
+    margin-top: 20px;
+    display: flex;
+}
+
+.calendar__settings__back {
+    cursor: pointer;
+    font-size: 18px;
+
+    transition: .2s linear;
+
+    &:hover {
+        color: var(--purple);
+    }
+
+    &:active {
+        color: var(--primary-color);
+    }
+}
+
+.calendar__settings__body__sidebar {
+    width: 200px;
+}
+
+.calendar__settings__body__sidebar__title {
+    font-size: 15px;
+    margin-bottom: 20px;
+}
+
+.calendar__settings__body__main {
+    width: 100%;
+    margin-left: 20px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.calendar__settings__body__main__input__title {
+    font-size: 13px;
+}
+
+.calendar__settings__body__main__input {
+    border: 1px solid var(--gray);
+    margin-top: 5px;
+    border-radius: 5px;
+    padding: 7px 13px;
+
+    width: 350px;
+
+    resize: none;
+
+    outline: none;
+
+    font-size: 15px;
+
+    transition: .2s linear;
+
+    &:focus {
+        border-color: var(--purple);
+    }
+}

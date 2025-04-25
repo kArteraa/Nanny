@@ -32,7 +32,7 @@ const LoginPage: FC = ({}) => {
                 </div>
 
                 <Link
-                    className="form__button"
+                    className="button"
                     href="/workspace"
                     data-testid="login-button"
                 >

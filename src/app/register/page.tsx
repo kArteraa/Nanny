@@ -48,7 +48,7 @@ const RegisterPage: FC = ({}) => {
                 </div>
 
                 <Link
-                    className="form__button"
+                    className="button"
                     href="/login"
                     data-testid="register-button"
                 >
