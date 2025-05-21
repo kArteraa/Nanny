@@ -3,7 +3,7 @@ import Link from "next/link";
 import { MdEmail } from "react-icons/md";
 import { FaKey } from "react-icons/fa";
 
-const LoginPage: FC = ({}) => {
+const LoginPage: FC = () => {
     return (
         <div className="auth_page" data-testid="auth-page">
             <div className="form" role="form">
