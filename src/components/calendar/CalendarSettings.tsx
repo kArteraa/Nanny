@@ -1,18 +1,28 @@
-import { Dispatch, FC, SetStateAction } from "react";
+"use client";
+
+import { Dispatch, FC, SetStateAction, useState } from "react";
 import { IoArrowBack } from "react-icons/io5";
+import { useCalendarStore } from "@/store";
 
 interface CalendarSettingsProps {
     setWrapperView: Dispatch<SetStateAction<"calendar" | "settings">>;
 }
 
-const calendars = [
-    { id: 1, name: "Test calendar 1" },
-    { id: 2, name: "Задачи" },
-];
-
 export const CalendarSettings: FC<CalendarSettingsProps> = ({
     setWrapperView,
 }) => {
+    const { calendars, addCalendar } = useCalendarStore();
+    const [name, setName] = useState("");
+    const [description, setDescription] = useState("");
+
+    const handleCreate = () => {
+        if (!name.trim()) return;
+        addCalendar(name.trim(), description.trim());
+        setName("");
+        setDescription("");
+        setWrapperView("calendar"); // вернуться назад после создания
+    };
+
     return (
         <div className="calendar__settings">
             <div className="calendar__settings__head">
@@ -49,6 +59,8 @@ export const CalendarSettings: FC<CalendarSettingsProps> = ({
                         </h1>
                         <input
                             type="text"
+                            value={name}
+                            onChange={(e) => setName(e.target.value)}
                             className="calendar__settings__body__main__input"
                         />
                     </div>
@@ -58,12 +70,17 @@ export const CalendarSettings: FC<CalendarSettingsProps> = ({
                             Описание
                         </h1>
                         <textarea
+                            value={description}
+                            onChange={(e) => setDescription(e.target.value)}
                             className="calendar__settings__body__main__input"
                             cols={20}
                             rows={5}
                         />
                     </div>
-                    <button className="button calendar__settings__body__main__button">
+                    <button
+                        className="button calendar__settings__body__main__button"
+                        onClick={handleCreate}
+                    >
                         Создать
                     </button>
                 </div>

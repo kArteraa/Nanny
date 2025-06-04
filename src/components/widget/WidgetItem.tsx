@@ -2,14 +2,16 @@
 
 import { FC } from "react";
 import { IoMdClose } from "react-icons/io";
-
 import FullCalendar from "@fullcalendar/react";
-
-import { motion } from "framer-motion";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import interactionPlugin from "@fullcalendar/interaction";
+import { motion } from "framer-motion";
 
-export const WidgetItem: FC = () => {
+interface Props {
+    events: { title: string; date: string }[];
+}
+
+export const WidgetItem: FC<Props> = ({ events }) => {
     return (
         <motion.div className="widget">
             <div className="widget__main">
@@ -25,11 +27,7 @@ export const WidgetItem: FC = () => {
                         initialView="dayGridMonth"
                         height="600px"
                         contentHeight="auto"
-                        events={[
-                            { title: "Заметка номер 1", date: "2025-04-22" },
-                            { title: "Заметка номер 2", date: "2025-03-24" },
-                            { title: "Заметка номер 1", date: "2025-03-25" },
-                        ]}
+                        events={events}
                     />
                 </div>
             </div>

@@ -1,16 +1,19 @@
-import { create } from "zustand/react";
-import { WidgetsTools } from "@/types/tools.types";
+import { create } from "zustand";
+import { persist } from "zustand/middleware";
 
-interface WidgetsToolbarStore {
-    tool: WidgetsTools;
-    setTool: (tool: WidgetsTools) => void;
+interface ToolbarState {
+    tool: "grid" | "rows" | "calendar";
+    setTool: (tool: "grid" | "rows" | "calendar") => void;
 }
 
-export const useWidgetsToolbarStore = create<WidgetsToolbarStore>()((set) => ({
-    tool: "grid",
-    setTool: (tool: WidgetsTools) => {
-        set(() => ({
-            tool,
-        }));
-    },
-}));
+export const useWidgetsToolbarStore = create<ToolbarState>()(
+    persist(
+        (set) => ({
+            tool: "grid",
+            setTool: (tool) => set({ tool }),
+        }),
+        {
+            name: "widgets-toolbar", // ключ в localStorage
+        }
+    )
+);

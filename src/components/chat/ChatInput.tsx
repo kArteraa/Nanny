@@ -1,26 +1,36 @@
 "use client";
 
 import { FC, useEffect } from "react";
-import { useInputStore } from "@/store";
+import { useInputStore, useToolbarStore } from "@/store";
+import { useWidgetStore } from "@/store";
 
-interface ChatInputProps {}
-
-export const ChatInput: FC<ChatInputProps> = ({}) => {
+export const ChatInput: FC = () => {
     const { text, setText, setSubmit } = useInputStore();
+    const { tool } = useToolbarStore();
+    const { addCalendar, addNote, addTask } = useWidgetStore();
 
     useEffect(() => {
         if (text) {
             const submitHandler = (e: KeyboardEvent) => {
                 if (e.key === "Enter") {
+                    const today = new Date().toISOString().split("T")[0];
+
+                    if (tool === "calendar") {
+                        addCalendar();
+                    } else if (tool === "note") {
+                        addNote("Новая заметка", today);
+                    } else if (tool === "task") {
+                        addTask("Новая задача", today);
+                    }
+
                     setSubmit(true);
                 }
             };
 
             window.addEventListener("keydown", submitHandler);
-
             return () => window.removeEventListener("keydown", submitHandler);
         }
-    }, [text]);
+    }, [text, tool]);
 
     return (
         <div className="chat__input__wrapper">
@@ -31,7 +41,6 @@ export const ChatInput: FC<ChatInputProps> = ({}) => {
                 data-testid={"message-input"}
                 onChange={(e) => setText(e.target.value)}
             />
-            {/*<HiOutlineFaceSmile className="chat__emoji" />*/}
         </div>
     );
 };

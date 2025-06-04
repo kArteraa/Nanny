@@ -6,17 +6,15 @@ import { CiSettings } from "react-icons/ci";
 import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import interactionPlugin from "@fullcalendar/interaction";
-
-const calendars = [
-    { id: 1, name: "Test calendar 1" },
-    { id: 2, name: "Задачи" },
-];
+import { useCalendarStore } from "@/store";
 
 interface CalendarMainProps {
     setWrapperView: Dispatch<SetStateAction<"calendar" | "settings">>;
 }
 
 export const CalendarMain: FC<CalendarMainProps> = ({ setWrapperView }) => {
+    const { calendars } = useCalendarStore();
+
     return (
         <>
             <aside className="calendar__sidebar">

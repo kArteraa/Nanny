@@ -2,31 +2,22 @@
 
 import { FC, useEffect, useRef, useState } from "react";
 import { ChatViewTrackItem } from "@/components";
-import { MappingMessages, ResponseMessage } from "@/types/messages.types";
-import { useInputStore, useToolbarStore } from "@/store";
+import { MappingMessages } from "@/types/messages.types";
+import { useInputStore, useToolbarStore, useChatStore } from "@/store";
 
 export const ChatViewTrack: FC = () => {
     const { text, submit, setSubmit, setText, mappingMessagesHandler } =
         useInputStore();
     const { tool } = useToolbarStore();
-    const chatTrack = useRef<HTMLDivElement>(null);
+    const { messages, addMessage } = useChatStore();
 
-    const [messages, setMessages] = useState<ResponseMessage[]>([
-        {
-            type: "nanny",
-            message:
-                "Nanny AI Service - Интерактивный помощник по поддержке принятия решений личностного роста.\n\n Напишите свое сообщение для начала работы.",
-            date: "18:03",
-        },
-    ]);
+    const chatTrack = useRef<HTMLDivElement>(null);
     const [mappingMessages, setMappingMessages] = useState<MappingMessages[]>(
         []
     );
 
     useEffect(() => {
-        if (messages && messages.length > 0) {
-            setMappingMessages(mappingMessagesHandler(messages));
-        }
+        setMappingMessages(mappingMessagesHandler(messages));
     }, [messages]);
 
     useEffect(() => {
@@ -35,19 +26,18 @@ export const ChatViewTrack: FC = () => {
                 const currentText = text;
                 setText("");
 
-                setMessages((prev) => [
-                    ...prev,
-                    { type: "user", message: currentText, date: "19:03" },
-                ]);
+                addMessage({
+                    type: "user",
+                    message: currentText,
+                    date: new Date().toLocaleTimeString().slice(0, 5),
+                });
+
                 setTimeout(() => {
-                    setMessages((prev) => [
-                        ...prev,
-                        {
-                            type: "nanny",
-                            message: `Постобработка сообщения "${currentText}". Добавление виджета - ${tool}!`,
-                            date: "19:03",
-                        },
-                    ]);
+                    addMessage({
+                        type: "nanny",
+                        message: `Постобработка сообщения "${currentText}". Добавление виджета - ${tool}!`,
+                        date: new Date().toLocaleTimeString().slice(0, 5),
+                    });
                 }, 500);
             }
         }
